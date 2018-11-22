@@ -19,7 +19,15 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install python; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
   - pip install py2app
-  - scripts/make-leelaz.sh
-
 install:
   - python setup.py py2app -A
+  - scripts/make-leelaz.sh
+  - curl -O https://zero.sjeng.org/best-network
+  - | gsed -i \
+    -e '90s|^.*$|command = '$(pwd)'/leela-zero/build/leelaz|'\
+    -e '91s|^.*$|parameters = --gtp --noponder --weights '$(pwd)'/best-network'\
+    -e '96s|^.*$|command = '$(pwd)'/leela-zero/build/leelaz|'\
+    -e '97s|^.*$|parameters = --gtp --noponder --weights '$(pwd)'/best-network|' \
+    config.ini
+  - mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
+
