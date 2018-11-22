@@ -7,6 +7,10 @@ matrix:
     - os: osx
       language: generic
       env: TOXENV=py27
+  include:
+    - os: osx
+      language: generic
+      env: TOXENV=py26
   fast_finish: true
 
 # osx deps
@@ -15,6 +19,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install python; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
   - pip install py2app
+  - scripts/make-leelaz.sh
 
 install:
   - python setup.py py2app -A
