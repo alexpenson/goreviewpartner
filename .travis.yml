@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+os: osx
+before_script:
+    - pip install py2app
+script:
+    - python setup.py py2app -A
+    - mv config.ini dist/GoReviewPartner.app/Contents/MacOS
+    - dist/GoReviewPartner.app/Contents/MacOS/GoReviewPartner
