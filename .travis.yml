@@ -1,11 +1,26 @@
 language: python
+
+dist: trusty
+
 python:
   - "2.6"
   - "2.7"
-os: osx
-before_script:
-    - pip install py2app
+
+matrix:
+  include:
+    - os: osx
+      language: generic
+      env: TOXENV=py27
+  fast_finish: true
+
+# osx deps
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install python; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
+
+install:
+  - python setup.py install
+
 script:
-    - python setup.py py2app -A
-    - mv config.ini dist/GoReviewPartner.app/Contents/MacOS
-    - dist/GoReviewPartner.app/Contents/MacOS/GoReviewPartner
+  - make test
