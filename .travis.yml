@@ -27,7 +27,7 @@ install:
   - | 
     gsed -i \
     -e '90s|^.*$|command = leelaz|'\
-    -e '91s|^.*$|parameters = --gtp --noponder --weights best-network'\
+    -e '91s|^.*$|parameters = --gtp --noponder --weights best-network|'\
     -e '96s|^.*$|command = leelaz|'\
     -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
     config.ini
