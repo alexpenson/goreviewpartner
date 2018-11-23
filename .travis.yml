@@ -33,3 +33,5 @@ deploy:
   file: dist/GoReviewPartner.app
   on:
     repo: alexpenson/goreviewpartner
+    tags: true
+    all_branches: true
