@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/alexpenson/goreviewpartner.svg?branch=master)](https://travis-ci.com/alexpenson/goreviewpartner)
 ![Go Review Partner logo](http://yuntingdian.com/goreviewpartner/grp-documentation/img/goreviewpartner.png "Go Review Partner logo")
 
 # goreviewpartner
