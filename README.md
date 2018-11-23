@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.com/alexpenson/goreviewpartner.svg?branch=master)](https://travis-ci.com/alexpenson/goreviewpartner)
 ![Go Review Partner logo](http://yuntingdian.com/goreviewpartner/grp-documentation/img/goreviewpartner.png "Go Review Partner logo")
+[![Build Status](https://travis-ci.com/alexpenson/goreviewpartner.svg?branch=master)](https://travis-ci.com/alexpenson/goreviewpartner)
 
 # goreviewpartner
 A tool to help analyse and review your games of Go ([weiqi, baduk, igo](https://en.wikipedia.org/wiki/Go_(game))) using bots. Currently supporting [Leela Zero](https://github.com/gcp/leela-zero/), [AQ](https://github.com/ymgaq/AQ), [Leela](https://www.sjeng.org/leela.html), [Ray](https://github.com/zakki/Ray) and [GnuGo](https://www.gnu.org/software/gnugo/).
