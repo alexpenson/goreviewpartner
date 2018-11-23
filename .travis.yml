@@ -24,10 +24,16 @@ install:
   - scripts/make-leelaz.sh
   - curl -O https://zero.sjeng.org/best-network
   - | gsed -i \
-    -e '90s|^.*$|command = '$(pwd)'/leela-zero/build/leelaz|'\
-    -e '91s|^.*$|parameters = --gtp --noponder --weights '$(pwd)'/best-network'\
-    -e '96s|^.*$|command = '$(pwd)'/leela-zero/build/leelaz|'\
-    -e '97s|^.*$|parameters = --gtp --noponder --weights '$(pwd)'/best-network|' \
+    -e '90s|^.*$|command = leelaz|'\
+    -e '91s|^.*$|parameters = --gtp --noponder --weights best-network'\
+    -e '96s|^.*$|command = leelaz|'\
+    -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
     config.ini
   - mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
-
+deploy:
+  provider: releases
+  api_key: "97c141dba50f337005ba8bde2bfff7245cc90d35"
+  file: "dist/GoReviewPartner.app"
+  skip_cleanup: true
+  on:
+    tags: true
