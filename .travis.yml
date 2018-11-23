@@ -19,9 +19,9 @@ install:
 - curl -O https://zero.sjeng.org/best-network
 - |
   gsed -i \
-  -e '90s|^.*$|command = leelaz|'\
+  -e '90s|^.*$|command = ./leelaz|'\
   -e '91s|^.*$|parameters = --gtp --noponder --weights best-network|'\
-  -e '96s|^.*$|command = leelaz|'\
+  -e '96s|^.*$|command = ./leelaz|'\
   -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
   config.ini
 - python2.7 leela_zero_analysis.py --no-gui tests/example.sgf
