@@ -24,6 +24,7 @@ install:
   -e '96s|^.*$|command = leelaz|'\
   -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
   config.ini
+- python2.7 leela_zero_analysis.py --no-gui tests/example.sgf
 - mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
 before_deploy: source scripts/dmg.sh
 deploy:
