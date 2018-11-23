@@ -8,3 +8,4 @@ cmake -DUSE_CPU_ONLY=1 ..
 cmake --build .
 ./tests
 mv leelaz ../..
+cd ../..
