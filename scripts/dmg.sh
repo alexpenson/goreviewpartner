@@ -5,8 +5,9 @@ hdiutil create -size 32m -fs HFS+ -volname "GoReviewPartner"  GoReviewPartner_in
 # Mount the disk image
 hdiutil attach GoReviewPartner_init.dmg
 
-# Add app to disk image
+# Add app and link to disk image
 cp -r dist/GoReviewPartner.app /Volumes/GoReviewPartner
+ln -s /Applications /Volumes/GoReviewPartner
 
 # Unmount the disk image
 hdiutil detach /Volumes/GoReviewPartner
