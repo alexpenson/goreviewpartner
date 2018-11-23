@@ -15,7 +15,7 @@ before_install:
 - pip install py2app
 install:
 - python setup.py py2app -A
-- scripts/make-leelaz.sh
+- source scripts/make-leelaz.sh
 - curl -O https://zero.sjeng.org/best-network
 - |
   gsed -i \
@@ -25,12 +25,13 @@ install:
   -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
   config.ini
 - mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
+before_deploy: source scripts/dmg.sh
 deploy:
   provider: releases
   api_key:
     secure: Lseud0CFNifNX2q2Lxf9J8LboW6ME82n8Vt4lutV48mo7Ik/JigmiFRx/DPFKaiHnUl+Fhcsr/Jszuuo4LILngW6Wcbnnxm+inZBNgvyRryMtwUrU4vs9ZwMR8+/yJ2uV/LeJInttZc3eSY5AgMZLs667/Vymd+yO8Lh3ZMggHJm9l5WMoXz+lq/zt1n1tTPl0mlZWakeQ57QSIkxq9UO22G7zXBcX6XqpukR1BnzKOTJmwUfs/584rTnCdFrWF7xeoSY3SAbQag8h84OiD7FXmQMSzuU+sRMpT52m108RfmC1ZcE8bH6syAG2uVFJAzafL0Aw+vash8RDEJ9vNxYW1iY1JMLa6bDkL9fhcFTXJcU+mnFCHfq0lYh4P9sVxCSJVnncJizIY02xTBzQ+4BnS7ickEciZNOhlMP+KSjoVXCN5TpHjZZiR6ah2vHuITLehiAQT/F8IErw7ZD8ALZJaMi3m/v4cs11m9Yy5meNQuT3dhJnSejcc2XsfUEHm9Hgu1NzBPdrxUftb07RZAPxBo9l4SwBBZ82J9nPoTDDvPAvXK6qphkjuh+LO8WsPPXqCoQB4Ikao4l1ACRssOHItBau4ZaLIsFHiCv8wqRKwo1L3udpvi9Buvmi7dsTyOlLDoyMug0L+cNy8dwKg9EOWN+YOQr28BRkJ6q5GMf0Y=
   skip_cleanup: true
-  file: dist/GoReviewPartner.app
+  file: GoReviewPartner.dmg
   on:
     repo: alexpenson/goreviewpartner
     tags: true
