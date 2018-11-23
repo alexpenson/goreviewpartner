@@ -1,41 +1,34 @@
 language: generic
-
 dist: trusty
-
 matrix:
   include:
-    - os: osx
-      language: generic
-      env: TOXENV=py27
-  include:
-    - os: osx
-      language: generic
-      env: TOXENV=py26
+  - os: osx
+    language: generic
+    env: TOXENV=py26
   fast_finish: true
-
-# osx deps
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install python; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gnu-sed; fi
-  - pip install py2app
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install
+  python; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gnu-sed; fi
+- pip install py2app
 install:
-  - python setup.py py2app -A
-  - scripts/make-leelaz.sh
-  - curl -O https://zero.sjeng.org/best-network
-  - | 
-    gsed -i \
-    -e '90s|^.*$|command = leelaz|'\
-    -e '91s|^.*$|parameters = --gtp --noponder --weights best-network|'\
-    -e '96s|^.*$|command = leelaz|'\
-    -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
-    config.ini
-  - mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
+- python setup.py py2app -A
+- scripts/make-leelaz.sh
+- curl -O https://zero.sjeng.org/best-network
+- |
+  gsed -i \
+  -e '90s|^.*$|command = leelaz|'\
+  -e '91s|^.*$|parameters = --gtp --noponder --weights best-network|'\
+  -e '96s|^.*$|command = leelaz|'\
+  -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
+  config.ini
+- mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
 deploy:
   provider: releases
-  api_key: "97c141dba50f337005ba8bde2bfff7245cc90d35"
-  file: "dist/GoReviewPartner.app"
-  skip_cleanup: true
+  api_key:
+    secure: BlHOUuT1kW4eGiJJ/UfppmnJodaCPk4YuYfWt6LpCefEUWjFDd8v3kIA5V1I4bqPOHpunsFFTGd4DPLG3ax4nUPEd/q6DqZAfdcLsGq9POFRuLc0Eyt6kGqmgeipqwGdLF1jSiLDtnH1aKn0U+siDn7tG38ydXj09/K0w763KdeoSS5sX1YhZu0JB5VuivGEKV5BFXcV0mgWAcvOK4V1jsdU+sV/sRfy8cQaTQdQuUUlK2ingiGQ89yA5GQN3Q/vEbR8V+5+R6+AAk0FTJ7zNEXzdeL3epHavzsolQ0oZz2HD9+19kZfgnkvRNAk3uspJIVYdM/+AmLoI4TT3J4xJlir3eYJa8rfdpbc3KZFpg13Pg8Gea/JJxkjbT5X92eEENSO8aMyWihPc8NmKuO1c8PFYet5MyrbzE0pxRPT2EjYKN0ORd/QEd4NlnB79d583bj3kOa11qV/xN1LxWorGLHyJT4Pw8ogClAQaEGdlOgalk7nHXg4VWh1vaCmfKRx9khXL6kAxmGY6muGzHcHJqaroNMvrqdseShJdd2nrtLYXDCHOA12WDnJTp6nH5JHF03dsJLC3FnOPjTv2O+xerb4ofPxj8xRoMkoozYAjxUHb4SvyGdtmuiN0Qliqw9ZGVUCA1v6JnBVhP7Pni7M+lh+X+Py9AFfmu5aRKAnpGw=
+  file: dist/GoReviewPartner.app
   on:
-    tags: true
+    repo: alexpenson/goreviewpartner
