@@ -21,6 +21,7 @@ if sys.platform == 'darwin':
         app=[mainscript],
         # Cross-platform applications generally expect sys.argv to
         # be used for opening files.
+        'iconfile':'icon.svg.icns',
         options=dict(py2app=dict(argv_emulation=True)),
         )
 elif sys.platform == 'win32':
