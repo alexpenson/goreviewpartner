@@ -37,5 +37,24 @@ else:
 
 setup(
     name="GoReviewPartner",
+    package='gomill',
+    py_modules=['aq_analysis.py',
+                'dual_view.py',
+                'gnugo_analysis.py',
+                'goban.py',
+                'gtp.py',
+                'gtp_terminal.py',
+                'leela_analysis.py',
+                'leela_zero_analysis.py',
+                'live_analysis.py',
+                'main.py',
+                'pachi_analysis.py',
+                'r2csv.py',
+                'r2sgf.py',
+                'ray_analysis.py',
+                'settings.py',
+                'setup.py',
+                'tabbed.py',
+                'toolbox.py'],
     **extra_options
     )
