@@ -1,6 +1,6 @@
 #!/bin/bash
-pip install py2app dmgbuild
-python setup.py py2app -A
+pip install -U py2app dmgbuild wxPython
+python setup.py py2app
 source scripts/make-leelaz.sh
 curl -O https://zero.sjeng.org/best-network
 gsed -i \
