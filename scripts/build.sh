@@ -1,6 +1,6 @@
 #!/bin/bash
-brew update
-brew list python &>/dev/null || brew install python
+# brew update
+# brew list python &>/dev/null || brew install python
 brew install pyenv-virtualenv
 brew install gnu-sed
 pip install py2app dmgbuild
