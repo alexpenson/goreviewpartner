@@ -6,26 +6,9 @@ matrix:
     language: generic
     env: TOXENV=py26
   fast_finish: true
-before_install:
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list python &>/dev/null || brew install
-  python; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install pyenv-virtualenv; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gnu-sed; fi
-- pip install py2app
 install:
-- python setup.py py2app -A
-- source scripts/make-leelaz.sh
-- curl -O https://zero.sjeng.org/best-network
-- |
-  gsed -i \
-  -e '90s|^.*$|command = ./leelaz|'\
-  -e '91s|^.*$|parameters = --gtp --noponder --weights best-network|'\
-  -e '96s|^.*$|command = ./leelaz|'\
-  -e '97s|^.*$|parameters = --gtp --noponder --weights best-network|' \
-  config.ini
-- python2.7 leela_zero_analysis.py --no-gui tests/example.sgf
-- mv config.ini best-network leelaz dist/GoReviewPartner.app/Contents/MacOS/
+- source scripts/build.sh
+
 before_deploy: source scripts/dmg.sh
 deploy:
   provider: releases
