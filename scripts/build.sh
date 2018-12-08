@@ -1,6 +1,6 @@
 #!/bin/bash
 pip install -U py2app dmgbuild wxPython
-python setup.py py2app
+python setup.py py2app --iconfile icon.svg.icns
 source scripts/make-leelaz.sh
 curl -O https://zero.sjeng.org/best-network
 sed \
