@@ -1,8 +1,4 @@
 #!/bin/bash
-# brew update
-# brew list python &>/dev/null || brew install python
-brew install pyenv-virtualenv
-brew install gnu-sed
 pip install py2app dmgbuild
 python setup.py py2app -A
 source scripts/make-leelaz.sh
